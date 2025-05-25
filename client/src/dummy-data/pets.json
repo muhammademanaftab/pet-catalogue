@@ -1,0 +1,152 @@
+[
+    {
+        "id": 1,
+        "name": "Fluffy",
+        "species": "Cat",
+        "birth_date": "2020-03-15T00:00:00.000000Z",
+        "death_date": null,
+        "note": "A beautiful Persian cat with long white fur. Loves to sleep in sunny spots and play with feather toys.",
+        "created_at": "2025-01-15T10:30:00.000000Z",
+        "updated_at": "2025-01-15T10:30:00.000000Z"
+    },
+    {
+        "id": 2,
+        "name": "Buddy",
+        "species": "Dog",
+        "birth_date": "2018-07-22T00:00:00.000000Z",
+        "death_date": null,
+        "note": "Golden Retriever who loves fetch and swimming. Very friendly with children and other pets.",
+        "created_at": "2025-01-15T10:35:00.000000Z",
+        "updated_at": "2025-01-20T14:22:00.000000Z"
+    },
+    {
+        "id": 3,
+        "name": "Charlie",
+        "species": "Hamster",
+        "birth_date": "2023-11-08T00:00:00.000000Z",
+        "death_date": "2024-12-10T00:00:00.000000Z",
+        "note": "A tiny Syrian hamster who loved running on his wheel at night. Always stored food in his cheeks.",
+        "created_at": "2025-01-15T10:40:00.000000Z",
+        "updated_at": "2024-12-11T09:15:00.000000Z"
+    },
+    {
+        "id": 4,
+        "name": "Bella",
+        "species": "Rabbit",
+        "birth_date": "2022-05-12T00:00:00.000000Z",
+        "death_date": null,
+        "note": "Holland Lop rabbit with floppy ears. Enjoys fresh vegetables and hopping around the garden.",
+        "created_at": "2025-01-15T10:45:00.000000Z",
+        "updated_at": "2025-01-15T10:45:00.000000Z"
+    },
+    {
+        "id": 5,
+        "name": "Oscar",
+        "species": "Fish",
+        "birth_date": "2024-02-28T00:00:00.000000Z",
+        "death_date": null,
+        "note": "Colorful Betta fish in a 10-gallon tank. Has a beautiful blue and red coloration.",
+        "created_at": "2025-01-15T10:50:00.000000Z",
+        "updated_at": "2025-01-15T10:50:00.000000Z"
+    },
+    {
+        "id": 6,
+        "name": "Max",
+        "species": "Dog",
+        "birth_date": "2015-09-03T00:00:00.000000Z",
+        "death_date": "2024-08-15T00:00:00.000000Z",
+        "note": "Loyal German Shepherd who was the best guard dog. Lived a full life of 9 years protecting our family.",
+        "created_at": "2025-01-15T10:55:00.000000Z",
+        "updated_at": "2024-08-16T11:30:00.000000Z"
+    },
+    {
+        "id": 7,
+        "name": "Luna",
+        "species": "Cat",
+        "birth_date": "2021-12-01T00:00:00.000000Z",
+        "death_date": null,
+        "note": "Black cat with green eyes. Very independent but loves cuddles in the evening.",
+        "created_at": "2025-01-15T11:00:00.000000Z",
+        "updated_at": "2025-01-15T11:00:00.000000Z"
+    },
+    {
+        "id": 8,
+        "name": "Tweety",
+        "species": "Bird",
+        "birth_date": "2019-04-18T00:00:00.000000Z",
+        "death_date": null,
+        "note": "Yellow canary with a beautiful singing voice. Brightens up the morning with cheerful songs.",
+        "created_at": "2025-01-15T11:05:00.000000Z",
+        "updated_at": "2025-01-15T11:05:00.000000Z"
+    },
+    {
+        "id": 9,
+        "name": "Rocky",
+        "species": "Turtle",
+        "birth_date": "2017-06-25T00:00:00.000000Z",
+        "death_date": null,
+        "note": "Red-eared slider turtle. Loves basking under the heat lamp and eating lettuce.",
+        "created_at": "2025-01-15T11:10:00.000000Z",
+        "updated_at": "2025-01-15T11:10:00.000000Z"
+    },
+    {
+        "id": 10,
+        "name": "Whiskers",
+        "species": "Cat",
+        "birth_date": "2016-10-14T00:00:00.000000Z",
+        "death_date": "2023-11-22T00:00:00.000000Z",
+        "note": "Orange tabby cat who lived to be 7 years old. Was known for his playful nature and love for catnip.",
+        "created_at": "2025-01-15T11:15:00.000000Z",
+        "updated_at": "2023-11-23T08:45:00.000000Z"
+    },
+    {
+        "id": 11,
+        "name": "Daisy",
+        "species": "Guinea Pig",
+        "birth_date": "2023-01-20T00:00:00.000000Z",
+        "death_date": null,
+        "note": "Adorable guinea pig with brown and white patches. Makes cute squeaking sounds when excited.",
+        "created_at": "2025-01-15T11:20:00.000000Z",
+        "updated_at": "2025-01-15T11:20:00.000000Z"
+    },
+    {
+        "id": 12,
+        "name": "Spike",
+        "species": "Hedgehog",
+        "birth_date": "2022-08-07T00:00:00.000000Z",
+        "death_date": null,
+        "note": "African pygmy hedgehog who is active at night. Loves mealworms and exploring his cage.",
+        "created_at": "2025-01-15T11:25:00.000000Z",
+        "updated_at": "2025-01-15T11:25:00.000000Z"
+    },
+    {
+        "id": 13,
+        "name": "Shadow",
+        "species": "Dog",
+        "birth_date": "2019-11-30T00:00:00.000000Z",
+        "death_date": null,
+        "note": "Border Collie mix with incredible intelligence. Knows over 20 tricks and loves agility training.",
+        "created_at": "2025-01-15T11:30:00.000000Z",
+        "updated_at": "2025-01-18T16:10:00.000000Z"
+    },
+    {
+        "id": 14,
+        "name": "Mittens",
+        "species": "Cat",
+        "birth_date": "2024-01-10T00:00:00.000000Z",
+        "death_date": null,
+        "note": "Kitten with white paws that look like mittens. Very playful and curious about everything.",
+        "created_at": "2025-01-15T11:35:00.000000Z",
+        "updated_at": "2025-01-15T11:35:00.000000Z"
+    },
+    {
+        "id": 15,
+        "name": "Goldie",
+        "species": "Fish",
+        "birth_date": "2023-09-12T00:00:00.000000Z",
+        "death_date": "2024-06-03T00:00:00.000000Z",
+        "note": "Beautiful goldfish who lived in a bowl on the kitchen counter. Brought joy to meal times.",
+        "created_at": "2025-01-15T11:40:00.000000Z",
+        "updated_at": "2024-06-04T07:20:00.000000Z"
+    }
+]
