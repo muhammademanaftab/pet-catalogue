@@ -1,7 +1,6 @@
 import { Link } from "react-router";
 import { Button } from "./components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "./components/ui/card";
-import { useAuthStore } from "./useAuthStore";
 import petData from "./dummy-data/pets.json";
 import { Heart, Sparkles, PawPrint, Star } from "lucide-react";
 
@@ -17,8 +16,6 @@ export interface Pet {
 }
 
 export function Home() {
-  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
-
   // Use static data directly (no loading needed)
   const pets: Pet[] = petData;
   const livingPets = pets.filter(pet => !pet.death_date).length;
@@ -77,99 +74,67 @@ export function Home() {
         </div>
       </div>
 
-      {/* Statistics Section */}
-      {isAuthenticated && (
-        <Card className="max-w-3xl mx-auto overflow-hidden border-0 shadow-2xl bg-gradient-to-br from-white via-pink-50 to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-          <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400"></div>
-          <CardHeader className="text-center pb-4">
-            <CardTitle className="text-3xl font-bold flex items-center justify-center gap-3">
-              <Heart className="h-8 w-8 text-red-500 animate-pulse" />
-              Your Pet Statistics
-              <Sparkles className="h-6 w-6 text-yellow-500" />
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="text-center space-y-6 pb-8">
-            {pets.length > 0 ? (
-              <div className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <Card className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border-green-200 dark:border-green-800">
+      {/* Statistics Section - Always show */}
+      <Card className="max-w-3xl mx-auto overflow-hidden border-0 shadow-2xl bg-gradient-to-br from-white via-pink-50 to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400"></div>
+        <CardHeader className="text-center pb-4">
+          <CardTitle className="text-3xl font-bold flex items-center justify-center gap-3">
+            <Heart className="h-8 w-8 text-red-500 animate-pulse" />
+            Pet Statistics
+            <Sparkles className="h-6 w-6 text-yellow-500" />
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="text-center space-y-6 pb-8">
+          {pets.length > 0 ? (
+            <div className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Card className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border-green-200 dark:border-green-800">
+                  <CardContent className="pt-6">
+                    <div className="text-4xl font-bold text-green-600 dark:text-green-400">{livingPets}</div>
+                    <div className="text-green-700 dark:text-green-300 font-medium">Living Pet{livingPets !== 1 ? 's' : ''}</div>
+                    <div className="text-2xl mt-2">💚</div>
+                  </CardContent>
+                </Card>
+                
+                {deceasedPets > 0 && (
+                  <Card className="bg-gradient-to-br from-gray-50 to-slate-50 dark:from-gray-800/50 dark:to-slate-800/50 border-gray-200 dark:border-gray-700">
                     <CardContent className="pt-6">
-                      <div className="text-4xl font-bold text-green-600 dark:text-green-400">{livingPets}</div>
-                      <div className="text-green-700 dark:text-green-300 font-medium">Living Pet{livingPets !== 1 ? 's' : ''}</div>
-                      <div className="text-2xl mt-2">💚</div>
+                      <div className="text-4xl font-bold text-gray-600 dark:text-gray-400">{deceasedPets}</div>
+                      <div className="text-gray-700 dark:text-gray-300 font-medium">Remembered Pet{deceasedPets !== 1 ? 's' : ''}</div>
+                      <div className="text-2xl mt-2">💫</div>
                     </CardContent>
                   </Card>
-                  
-                  {deceasedPets > 0 && (
-                    <Card className="bg-gradient-to-br from-gray-50 to-slate-50 dark:from-gray-800/50 dark:to-slate-800/50 border-gray-200 dark:border-gray-700">
-                      <CardContent className="pt-6">
-                        <div className="text-4xl font-bold text-gray-600 dark:text-gray-400">{deceasedPets}</div>
-                        <div className="text-gray-700 dark:text-gray-300 font-medium">Remembered Pet{deceasedPets !== 1 ? 's' : ''}</div>
-                        <div className="text-2xl mt-2">💫</div>
-                      </CardContent>
-                    </Card>
-                  )}
-                </div>
-                
-                <p className="text-xl leading-relaxed text-muted-foreground">
-                  You have created a beautiful catalogue with <span className="font-bold text-green-600">{livingPets}</span> living companion{livingPets !== 1 ? 's' : ''}
-                  {deceasedPets > 0 && (
-                    <> and precious memories of <span className="font-bold text-gray-600">{deceasedPets}</span> beloved pet{deceasedPets !== 1 ? 's' : ''}</>
-                  )}.
-                </p>
-                
-                <Link to="/pets">
-                  <Button size="lg" className="bg-gradient-to-r from-pink-500 to-blue-500 hover:from-pink-600 hover:to-blue-600 text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                    <PawPrint className="h-5 w-5 mr-2" />
-                    View My Pets
-                  </Button>
-                </Link>
+                )}
               </div>
-            ) : (
-              <div className="space-y-6">
-                <div className="text-6xl animate-bounce">🐾</div>
-                <p className="text-xl text-muted-foreground">Your pet journey is about to begin!</p>
-                <Link to="/pets/new">
-                  <Button size="lg" className="bg-gradient-to-r from-pink-500 to-blue-500 hover:from-pink-600 hover:to-blue-600 text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                    <Heart className="h-5 w-5 mr-2" />
-                    Add Your First Pet
-                  </Button>
-                </Link>
-              </div>
-            )}
-          </CardContent>
-        </Card>
-      )}
-
-      {/* Call to Action for Non-Authenticated Users */}
-      {!isAuthenticated && (
-        <Card className="max-w-3xl mx-auto overflow-hidden border-0 shadow-2xl bg-gradient-to-br from-white via-blue-50 to-purple-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-purple-900/20">
-          <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400"></div>
-          <CardHeader className="text-center">
-            <CardTitle className="text-3xl font-bold flex items-center justify-center gap-3">
-              <Star className="h-8 w-8 text-yellow-500" />
-              Start Your Journey
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="text-center space-y-6">
-            <div className="text-4xl animate-pulse">✨</div>
-            <p className="text-xl text-muted-foreground leading-relaxed">
-              Sign in to start building your pet catalogue and keep track of all your furry, 
-              feathered, and scaled friends.
-            </p>
-            <div className="flex gap-4 justify-center flex-wrap">
-              <Link to="/login">
-                <Button size="lg" className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                  Login
+              
+              <p className="text-xl leading-relaxed text-muted-foreground">
+                You have <span className="font-bold text-green-600">{livingPets}</span> living companion{livingPets !== 1 ? 's' : ''}
+                {deceasedPets > 0 && (
+                  <>. And you said goodbye to <span className="font-bold text-gray-600">{deceasedPets}</span> beloved pet{deceasedPets !== 1 ? 's' : ''}</>
+                )}.
+              </p>
+              
+              <Link to="/pets">
+                <Button size="lg" className="bg-gradient-to-r from-pink-500 to-blue-500 hover:from-pink-600 hover:to-blue-600 text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                  <PawPrint className="h-5 w-5 mr-2" />
+                  View My Pets
                 </Button>
               </Link>
-              <Button size="lg" variant="outline" className="font-semibold px-8 py-3 rounded-full border-2 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300 transform hover:scale-105">
-                Register
-              </Button>
             </div>
-          </CardContent>
-        </Card>
-      )}
+          ) : (
+            <div className="space-y-6">
+              <div className="text-6xl animate-bounce">🐾</div>
+              <p className="text-xl text-muted-foreground">Your pet journey is about to begin!</p>
+              <Link to="/pets/new">
+                <Button size="lg" className="bg-gradient-to-r from-pink-500 to-blue-500 hover:from-pink-600 hover:to-blue-600 text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                  <Heart className="h-5 w-5 mr-2" />
+                  Add Your First Pet
+                </Button>
+              </Link>
+            </div>
+          )}
+        </CardContent>
+      </Card>
 
       {/* Enhanced Features Section */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
