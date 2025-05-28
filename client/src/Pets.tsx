@@ -1,4 +1,5 @@
-import { Pet } from "./Home";
+import { useState, useEffect } from "react";
+import { apiService, Pet, handleApiError } from "./services/api";
 import {
   Table,
   TableBody,
@@ -11,12 +12,41 @@ import { Button } from "./components/ui/button";
 import { Link } from "react-router";
 import { Card, CardContent, CardHeader, CardTitle } from "./components/ui/card";
 import { Badge } from "./components/ui/badge";
-import { Plus, Edit, Heart, Sparkles, Calendar, FileText, Activity } from "lucide-react";
-import petData from "./dummy-data/pets.json";
+import { Plus, Edit, Heart, Sparkles, Calendar, FileText, Activity, Loader2, RefreshCw } from "lucide-react";
 
 export function Pets() {
-  // Use static data directly (no loading needed)
-  const pets: Pet[] = petData;
+  const [pets, setPets] = useState<Pet[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [refreshing, setRefreshing] = useState(false);
+
+  const fetchPets = async (showRefreshing = false) => {
+    try {
+      if (showRefreshing) {
+        setRefreshing(true);
+      } else {
+        setLoading(true);
+      }
+      setError(null);
+      
+      const response = await apiService.getAllPets();
+      
+      if (response.success) {
+        setPets(response.data);
+      } else {
+        setError(response.message || 'Failed to fetch pets');
+      }
+    } catch (err) {
+      setError(handleApiError(err));
+    } finally {
+      setLoading(false);
+      setRefreshing(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchPets();
+  }, []);
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString();
@@ -37,6 +67,43 @@ export function Pets() {
     return speciesMap[species] || '🐾';
   };
 
+  if (loading) {
+    return (
+      <div className="container max-w-7xl mx-auto px-4 flex items-center justify-center min-h-[60vh]">
+        <Card className="p-8 text-center">
+          <CardContent>
+            <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4 text-pink-500" />
+            <p className="text-lg text-muted-foreground">Loading your pets...</p>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="container max-w-7xl mx-auto px-4 flex items-center justify-center min-h-[60vh]">
+        <Card className="p-8 text-center border-red-200 bg-red-50 dark:bg-red-900/20 max-w-md">
+          <CardContent>
+            <div className="text-red-500 text-4xl mb-4">⚠️</div>
+            <p className="text-lg text-red-600 dark:text-red-400 mb-4">
+              Unable to load pets
+            </p>
+            <p className="text-sm text-muted-foreground mb-4">{error}</p>
+            <Button 
+              onClick={() => fetchPets()} 
+              variant="outline"
+              className="border-red-300 text-red-600 hover:bg-red-50"
+            >
+              <RefreshCw className="h-4 w-4 mr-2" />
+              Try Again
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
   return (
     <div className="container max-w-7xl mx-auto px-4 space-y-8">
       {/* Beautiful Header */}
@@ -56,13 +123,24 @@ export function Pets() {
             <p className="text-muted-foreground mt-2">Manage and cherish your beloved companions</p>
           </div>
           
-          <Link to="/pets/new">
-            <Button className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white font-semibold px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center gap-2">
-              <Plus className="h-5 w-5" />
-              Add New Pet
-              <Sparkles className="h-4 w-4" />
+          <div className="flex gap-3">
+            <Button
+              onClick={() => fetchPets(true)}
+              disabled={refreshing}
+              variant="outline"
+              className="flex items-center gap-2"
+            >
+              <RefreshCw className={`h-4 w-4 ${refreshing ? 'animate-spin' : ''}`} />
+              Refresh
             </Button>
-          </Link>
+            <Link to="/pets/new">
+              <Button className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white font-semibold px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center gap-2">
+                <Plus className="h-5 w-5" />
+                Add New Pet
+                <Sparkles className="h-4 w-4" />
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
 

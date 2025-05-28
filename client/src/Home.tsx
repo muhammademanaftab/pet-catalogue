@@ -1,25 +1,75 @@
 import { Link } from "react-router";
 import { Button } from "./components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "./components/ui/card";
-import petData from "./dummy-data/pets.json";
-import { Heart, Sparkles, PawPrint, Star } from "lucide-react";
-
-export interface Pet {
-  id: number;
-  name: string;
-  species: string;
-  birth_date: string;
-  death_date: string | null;
-  note: string | null;
-  created_at: string;
-  updated_at: string;
-}
+import { useState, useEffect } from "react";
+import { apiService, Pet, handleApiError } from "./services/api";
+import { Heart, Sparkles, PawPrint, Star, Loader2 } from "lucide-react";
 
 export function Home() {
-  // Use static data directly (no loading needed)
-  const pets: Pet[] = petData;
+  const [pets, setPets] = useState<Pet[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchPets = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await apiService.getAllPets();
+        
+        if (response.success) {
+          setPets(response.data);
+        } else {
+          setError(response.message || 'Failed to fetch pets');
+        }
+      } catch (err) {
+        setError(handleApiError(err));
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPets();
+  }, []);
+
   const livingPets = pets.filter(pet => !pet.death_date).length;
   const deceasedPets = pets.filter(pet => pet.death_date).length;
+
+  if (loading) {
+    return (
+      <div className="container max-w-6xl mx-auto px-4 flex items-center justify-center min-h-[60vh]">
+        <Card className="p-8 text-center">
+          <CardContent>
+            <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4 text-pink-500" />
+            <p className="text-lg text-muted-foreground">Loading your pet collection...</p>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="container max-w-6xl mx-auto px-4 flex items-center justify-center min-h-[60vh]">
+        <Card className="p-8 text-center border-red-200 bg-red-50 dark:bg-red-900/20">
+          <CardContent>
+            <div className="text-red-500 text-4xl mb-4">⚠️</div>
+            <p className="text-lg text-red-600 dark:text-red-400 mb-4">
+              Unable to connect to the server
+            </p>
+            <p className="text-sm text-muted-foreground mb-4">{error}</p>
+            <Button 
+              onClick={() => window.location.reload()} 
+              variant="outline"
+              className="border-red-300 text-red-600 hover:bg-red-50"
+            >
+              Try Again
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   return (
     <div className="container max-w-6xl mx-auto px-4 space-y-12">

@@ -3,14 +3,8 @@ import { Input } from "./components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "./components/ui/card";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { apiService, PetFormData, handleApiError } from "./services/api";
 import { ArrowLeft, Heart, CheckCircle, Sparkles, Calendar, FileText, Tag } from "lucide-react";
-
-interface PetFormData {
-  name: string;
-  species: string;
-  birth_date: string;
-  note: string;
-}
 
 export default function AddPet() {
   const navigate = useNavigate();
@@ -29,6 +23,8 @@ export default function AddPet() {
       ...formData,
       [e.target.id]: e.target.value,
     });
+    // Clear error when user starts typing
+    setErrorMessage("");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -49,15 +45,18 @@ export default function AddPet() {
 
     setIsSubmitting(true);
 
-    // Simulate saving (in demo mode)
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      const response = await apiService.createPet(formData);
       
-      // Show success and redirect
-      alert(`✨ Welcome to the family, ${formData.name}! 🐾\n\nYour new ${formData.species.toLowerCase()} has been added to your pet catalogue.\n\nNote: This is demo mode - in a real app, this would save to a database.`);
-      navigate("/pets");
+      if (response.success) {
+        // Show success message
+        alert(`✨ Welcome to the family, ${formData.name}! 🐾\n\nYour new ${formData.species.toLowerCase()} has been added to your pet catalogue.`);
+        navigate("/pets");
+      } else {
+        setErrorMessage(response.message || "Failed to add pet");
+      }
     } catch (error) {
-      setErrorMessage("Failed to add pet. Please try again.");
+      setErrorMessage(handleApiError(error));
     } finally {
       setIsSubmitting(false);
     }
@@ -86,13 +85,13 @@ export default function AddPet() {
             Add a new companion to your pet catalogue
           </p>
           
-          {/* Demo Mode Notice */}
-          <div className="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4 mt-6">
-            <div className="flex items-center gap-3 text-blue-700 dark:text-blue-300">
+          {/* API Connection Notice */}
+          <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border border-green-200 dark:border-green-800 rounded-xl p-4 mt-6">
+            <div className="flex items-center gap-3 text-green-700 dark:text-green-300">
               <CheckCircle className="h-5 w-5 flex-shrink-0" />
               <div className="text-left">
-                <span className="font-semibold">Demo Mode Active</span>
-                <p className="text-sm mt-1">New pets will be showcased but not permanently saved to demonstrate functionality</p>
+                <span className="font-semibold">Connected to Database</span>
+                <p className="text-sm mt-1">Your new pet will be permanently saved to the database</p>
               </div>
             </div>
           </div>
@@ -179,7 +178,7 @@ export default function AddPet() {
                   Notes & Memories
                 </label>
                 <textarea
-                  value={formData.note}
+                  value={formData.note || ""}
                   onChange={handleChange}
                   id="note"
                   className="flex min-h-[120px] w-full rounded-lg border-2 border-input bg-background px-4 py-3 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-0 focus-visible:border-green-400 dark:focus-visible:border-green-600 disabled:cursor-not-allowed disabled:opacity-50 resize-none transition-all duration-300"
