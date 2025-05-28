@@ -20,7 +20,7 @@ export default function About() {
     { name: "Personal notes and memories", icon: "💝", color: "text-pink-500" },
     { name: "Responsive design", icon: "📱", color: "text-purple-500" },
     { name: "Dark/light theme support", icon: "🌓", color: "text-yellow-500" },
-    { name: "User authentication", icon: "🔐", color: "text-red-500" }
+    { name: "Real-time database integration", icon: "🔗", color: "text-red-500" }
   ];
 
   const hobbies = [
@@ -36,11 +36,11 @@ export default function About() {
       {/* Beautiful Header */}
       <div className="text-center space-y-6 relative">
         {/* Floating decorative elements */}
-        <div className="absolute top-0 left-1/4 w-4 h-4 bg-pink-400 rounded-full animate-bounce opacity-60" style={{animationDelay: '0s'}}></div>
-        <div className="absolute top-8 right-1/4 w-3 h-3 bg-purple-400 rounded-full animate-bounce opacity-50" style={{animationDelay: '1s'}}></div>
-        <div className="absolute top-16 left-1/3 w-2 h-2 bg-blue-400 rounded-full animate-bounce opacity-70" style={{animationDelay: '2s'}}></div>
+        <div className="absolute top-0 left-1/4 w-4 h-4 bg-pink-400/60 rounded-full animate-bounce" style={{animationDelay: '0s'}}></div>
+        <div className="absolute top-8 right-1/4 w-3 h-3 bg-purple-400/50 rounded-full animate-bounce" style={{animationDelay: '1s'}}></div>
+        <div className="absolute top-16 left-1/3 w-2 h-2 bg-blue-400/70 rounded-full animate-bounce" style={{animationDelay: '2s'}}></div>
         
-        <div className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-100 to-blue-100 dark:from-pink-900/20 dark:to-blue-900/20 px-4 py-2 rounded-full border mb-4">
+        <div className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-100/80 to-blue-100/80 dark:from-pink-900/30 dark:to-blue-900/30 px-4 py-2 rounded-full border border-pink-200/50 dark:border-pink-700/50 mb-4 backdrop-blur-sm">
           <Star className="h-4 w-4 text-yellow-500 animate-pulse" />
           <span className="text-sm font-medium bg-gradient-to-r from-pink-600 to-blue-600 bg-clip-text text-transparent">
             Meet the Creator
@@ -54,13 +54,13 @@ export default function About() {
             <Sparkles className="h-10 w-10 text-yellow-500 animate-bounce" />
           </span>
         </h1>
-        <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+        <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
           Learn more about the passionate developer behind Pet Catalogue
         </p>
       </div>
 
       {/* Main Profile Card */}
-      <Card className="max-w-4xl mx-auto overflow-hidden border-0 shadow-2xl bg-gradient-to-br from-white via-pink-50 to-purple-50 dark:from-gray-900 dark:via-pink-900/10 dark:to-purple-900/10">
+      <Card className="max-w-4xl mx-auto overflow-hidden border-0 shadow-2xl bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl">
         <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 animate-pulse"></div>
         
         <CardHeader className="text-center pb-6">
@@ -82,7 +82,7 @@ export default function About() {
           <CardTitle className="text-3xl font-black bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
             Developer Information
           </CardTitle>
-          <p className="text-muted-foreground mt-2">
+          <p className="text-gray-600 dark:text-gray-400 mt-2">
             Passionate full-stack developer with a love for creating meaningful applications
           </p>
         </CardHeader>
@@ -92,35 +92,35 @@ export default function About() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             
             {/* Personal Details */}
-            <Card className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 border-blue-200 dark:border-blue-800 hover:shadow-lg transition-all duration-300">
+            <Card className="bg-gradient-to-br from-blue-50/80 to-cyan-50/80 dark:from-blue-900/30 dark:to-cyan-900/30 border-blue-200/50 dark:border-blue-700/50 hover:shadow-lg transition-all duration-300 backdrop-blur-sm">
               <CardHeader>
-                <CardTitle className="flex items-center gap-3 text-xl">
+                <CardTitle className="flex items-center gap-3 text-xl text-gray-800 dark:text-gray-200">
                   <User className="h-6 w-6 text-blue-500" />
                   Personal Details
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-4">
-                  <div className="flex items-center gap-4 p-3 bg-white/50 dark:bg-gray-800/50 rounded-lg hover:bg-white/80 dark:hover:bg-gray-800/80 transition-all duration-300">
+                  <div className="flex items-center gap-4 p-3 bg-white/60 dark:bg-gray-800/60 rounded-lg hover:bg-white/80 dark:hover:bg-gray-800/80 transition-all duration-300 backdrop-blur-sm">
                     <User className="h-5 w-5 text-blue-500" />
                     <div>
-                      <span className="font-medium text-muted-foreground">Name:</span>
-                      <span className="font-bold text-lg ml-2">John Doe</span>
+                      <span className="font-medium text-gray-600 dark:text-gray-400">Name:</span>
+                      <span className="font-bold text-lg ml-2 text-gray-800 dark:text-gray-200">John Doe</span>
                     </div>
                   </div>
                   
-                  <div className="flex items-center gap-4 p-3 bg-white/50 dark:bg-gray-800/50 rounded-lg hover:bg-white/80 dark:hover:bg-gray-800/80 transition-all duration-300">
+                  <div className="flex items-center gap-4 p-3 bg-white/60 dark:bg-gray-800/60 rounded-lg hover:bg-white/80 dark:hover:bg-gray-800/80 transition-all duration-300 backdrop-blur-sm">
                     <GraduationCap className="h-5 w-5 text-green-500" />
                     <div>
-                      <span className="font-medium text-muted-foreground">Neptun ID:</span>
-                      <Badge variant="outline" className="ml-2 font-bold border-green-300 text-green-600">ABC123</Badge>
+                      <span className="font-medium text-gray-600 dark:text-gray-400">Neptun ID:</span>
+                      <Badge variant="outline" className="ml-2 font-bold border-green-300 text-green-600 dark:border-green-600 dark:text-green-400">ABC123</Badge>
                     </div>
                   </div>
                   
-                  <div className="flex items-center gap-4 p-3 bg-white/50 dark:bg-gray-800/50 rounded-lg hover:bg-white/80 dark:hover:bg-gray-800/80 transition-all duration-300">
+                  <div className="flex items-center gap-4 p-3 bg-white/60 dark:bg-gray-800/60 rounded-lg hover:bg-white/80 dark:hover:bg-gray-800/80 transition-all duration-300 backdrop-blur-sm">
                     <Mail className="h-5 w-5 text-purple-500" />
                     <div>
-                      <span className="font-medium text-muted-foreground">Email:</span>
+                      <span className="font-medium text-gray-600 dark:text-gray-400">Email:</span>
                       <a href="mailto:john.doe@example.com" className="font-bold text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300 ml-2 transition-colors duration-300">
                         john.doe@example.com
                       </a>
@@ -131,15 +131,15 @@ export default function About() {
             </Card>
             
             {/* About Project */}
-            <Card className="bg-gradient-to-br from-pink-50 to-rose-50 dark:from-pink-900/20 dark:to-rose-900/20 border-pink-200 dark:border-pink-800 hover:shadow-lg transition-all duration-300">
+            <Card className="bg-gradient-to-br from-pink-50/80 to-rose-50/80 dark:from-pink-900/30 dark:to-rose-900/30 border-pink-200/50 dark:border-pink-700/50 hover:shadow-lg transition-all duration-300 backdrop-blur-sm">
               <CardHeader>
-                <CardTitle className="flex items-center gap-3 text-xl">
+                <CardTitle className="flex items-center gap-3 text-xl text-gray-800 dark:text-gray-200">
                   <PawPrint className="h-6 w-6 text-pink-500 animate-pulse" />
                   About Pet Catalogue
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
                   Pet Catalogue is a heartfelt web application built with modern React technologies. 
                   It helps pet owners create lasting memories and keep track of their beloved 
                   companions throughout their lives, celebrating both the joy of living pets 
@@ -147,7 +147,7 @@ export default function About() {
                 </p>
                 <div className="mt-4 flex items-center gap-2">
                   <Heart className="h-5 w-5 text-red-500 animate-pulse" />
-                  <span className="text-sm italic text-muted-foreground">
+                  <span className="text-sm italic text-gray-500 dark:text-gray-500">
                     Made with love for pet parents everywhere
                   </span>
                 </div>
@@ -156,9 +156,9 @@ export default function About() {
           </div>
 
           {/* Technologies Used */}
-          <Card className="bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-900/20 dark:to-violet-900/20 border-purple-200 dark:border-purple-800">
+          <Card className="bg-gradient-to-br from-purple-50/80 to-violet-50/80 dark:from-purple-900/30 dark:to-violet-900/30 border-purple-200/50 dark:border-purple-700/50 backdrop-blur-sm">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-2xl">
+              <CardTitle className="flex items-center gap-3 text-2xl text-gray-800 dark:text-gray-200">
                 <Code className="h-7 w-7 text-purple-500" />
                 Technologies Used
               </CardTitle>
@@ -185,9 +185,9 @@ export default function About() {
           </Card>
 
           {/* Project Features */}
-          <Card className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border-green-200 dark:border-green-800">
+          <Card className="bg-gradient-to-br from-green-50/80 to-emerald-50/80 dark:from-green-900/30 dark:to-emerald-900/30 border-green-200/50 dark:border-green-700/50 backdrop-blur-sm">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-2xl">
+              <CardTitle className="flex items-center gap-3 text-2xl text-gray-800 dark:text-gray-200">
                 <Sparkles className="h-7 w-7 text-green-500" />
                 Project Features
               </CardTitle>
@@ -197,12 +197,12 @@ export default function About() {
                 {features.map((feature, index) => (
                   <div 
                     key={feature.name}
-                    className="flex items-center gap-3 p-3 bg-white/50 dark:bg-gray-800/30 rounded-lg hover:bg-white/80 dark:hover:bg-gray-800/50 transition-all duration-300 hover:scale-105"
+                    className="flex items-center gap-3 p-3 bg-white/60 dark:bg-gray-800/40 rounded-lg hover:bg-white/80 dark:hover:bg-gray-800/60 transition-all duration-300 hover:scale-105 backdrop-blur-sm"
                     style={{ animationDelay: `${index * 150}ms` }}
                   >
                     <span className="text-2xl">{feature.icon}</span>
                     <span className={`font-medium ${feature.color}`}>✓</span>
-                    <span className="text-sm font-medium">{feature.name}</span>
+                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{feature.name}</span>
                   </div>
                 ))}
               </div>
@@ -210,9 +210,9 @@ export default function About() {
           </Card>
 
           {/* Personal Interests */}
-          <Card className="bg-gradient-to-br from-orange-50 to-yellow-50 dark:from-orange-900/20 dark:to-yellow-900/20 border-orange-200 dark:border-orange-800">
+          <Card className="bg-gradient-to-br from-orange-50/80 to-yellow-50/80 dark:from-orange-900/30 dark:to-yellow-900/30 border-orange-200/50 dark:border-orange-700/50 backdrop-blur-sm">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-2xl">
+              <CardTitle className="flex items-center gap-3 text-2xl text-gray-800 dark:text-gray-200">
                 <Coffee className="h-7 w-7 text-orange-500" />
                 When I'm Not Coding
               </CardTitle>
@@ -222,11 +222,11 @@ export default function About() {
                 {hobbies.map((hobby, index) => (
                   <div 
                     key={hobby.name}
-                    className="flex flex-col items-center gap-2 p-4 bg-white/50 dark:bg-gray-800/30 rounded-lg hover:bg-white/80 dark:hover:bg-gray-800/50 transition-all duration-300 hover:scale-110 group"
+                    className="flex flex-col items-center gap-2 p-4 bg-white/60 dark:bg-gray-800/40 rounded-lg hover:bg-white/80 dark:hover:bg-gray-800/60 transition-all duration-300 hover:scale-110 group backdrop-blur-sm"
                     style={{ animationDelay: `${index * 200}ms` }}
                   >
                     <hobby.icon className={`h-8 w-8 ${hobby.color} group-hover:animate-bounce`} />
-                    <span className="text-sm font-medium text-center">{hobby.name}</span>
+                    <span className="text-sm font-medium text-center text-gray-700 dark:text-gray-300">{hobby.name}</span>
                   </div>
                 ))}
               </div>
@@ -234,7 +234,7 @@ export default function About() {
           </Card>
 
           {/* Inspirational Quote */}
-          <Card className="bg-gradient-to-r from-yellow-50 via-orange-50 to-red-50 dark:from-yellow-900/10 dark:via-orange-900/10 dark:to-red-900/10 border-yellow-200 dark:border-yellow-800">
+          <Card className="bg-gradient-to-r from-yellow-50/80 via-orange-50/80 to-red-50/80 dark:from-yellow-900/20 dark:via-orange-900/20 dark:to-red-900/20 border-yellow-200/50 dark:border-yellow-700/50 backdrop-blur-sm">
             <CardContent className="text-center py-12">
               <div className="space-y-6">
                 <div className="flex justify-center gap-4 text-4xl">
@@ -242,7 +242,7 @@ export default function About() {
                   <span className="animate-bounce" style={{animationDelay: '0.5s'}}>💫</span>
                   <span className="animate-bounce" style={{animationDelay: '1s'}}>✨</span>
                 </div>
-                <blockquote className="text-2xl md:text-3xl italic font-medium text-muted-foreground leading-relaxed">
+                <blockquote className="text-2xl md:text-3xl italic font-medium text-gray-700 dark:text-gray-300 leading-relaxed">
                   "Every pet leaves paw prints on our hearts.<br />
                   This application helps preserve those precious memories."
                 </blockquote>
