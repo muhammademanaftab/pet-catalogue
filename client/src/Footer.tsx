@@ -105,19 +105,19 @@ export function Footer() {
                   href="mailto:love@petcatalogue.com" 
                   className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"
                 >
-                  love@petcatalogue.com
+                  love@petcatalogue.com (Email)
                 </a>
               </li>
               <li className="flex items-center gap-3 text-gray-600 dark:text-gray-400 group">
                 <Phone className="h-4 w-4 text-green-500 group-hover:animate-bounce" />
                 <span className="hover:text-green-600 dark:hover:text-green-400 transition-colors duration-300">
-                  +1 (555) PET-LOVE
+                  +1 (555) PET-LOVE (Number)
                 </span>
               </li>
               <li className="flex items-center gap-3 text-gray-600 dark:text-gray-400 group">
                 <MapPin className="h-4 w-4 text-red-500 group-hover:animate-bounce" />
                 <span className="hover:text-red-600 dark:hover:text-red-400 transition-colors duration-300">
-                  Pet Paradise, Love Street 🏡
+                  Pet Paradise, Love Street 🏡 (Address)
                 </span>
               </li>
             </ul>
